@@ -25,7 +25,7 @@ class ConveniencePayServiceTest {
 
         //then
         assertEquals(PayResult.SUCCESS, payResponse.getPayResult());
-        assertEquals(1000_000, payResponse.getPaidAmount());
+        assertEquals(700_000, payResponse.getPaidAmount());
     }
 
     @Test

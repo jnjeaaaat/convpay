@@ -6,6 +6,7 @@ import com.zerobase.convpay.type.*;
 public class ConveniencePayService {      // 편결이
     private final MoneyAdapter moneyAdapter = new MoneyAdapter();
     private final CardAdapter cardAdapter = new CardAdapter();
+    private final DiscountInterface discountInterface = new DiscountByPayMethod();
 
     public PayResponse pay(PayRequest payRequest) {
         PaymentInterface paymentInterface;
@@ -16,13 +17,14 @@ public class ConveniencePayService {      // 편결이
             paymentInterface = moneyAdapter;
         }
 
+        Integer discountedAmount = discountInterface.getDiscountedAmount(payRequest);
         PaymentResult paymentResult = paymentInterface.payment(payRequest.getPayAmount());
 
         if (paymentResult == PaymentResult.PAYMENT_FAIL) {
             return new PayResponse(PayResult.FAIL, 0);
         }
 
-        return new PayResponse(PayResult.SUCCESS, payRequest.getPayAmount());
+        return new PayResponse(PayResult.SUCCESS, discountedAmount);
     }
 
     public PayCancelResponse payCancel(PayCancelRequest payCancelRequest) {
