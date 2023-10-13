@@ -20,6 +20,7 @@ public class ApplicationConfig {
         );
     }
 
+    // conveniencePayService Bean에 쓰이는 값들을 다 Bean으로 만들어서 서로 의존하게 함.
     @Bean
     public CardAdapter cardAdapter() {
         return new CardAdapter();

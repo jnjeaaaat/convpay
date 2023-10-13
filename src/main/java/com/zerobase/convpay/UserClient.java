@@ -15,6 +15,7 @@ public class UserClient {
     public static void main(String[] args) {
         // `사용자` -> 판결이 -> 머니
 
+        // ApplicationContext 라는 스프링 컨테이너에 내가 만든 클래스를 생성하여 담게 됨
         ApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
